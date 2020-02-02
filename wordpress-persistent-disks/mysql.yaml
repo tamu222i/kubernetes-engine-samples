@@ -33,5 +33,9 @@ spec:
               mountPath: /var/lib/mysql
       volumes:
         - name: mysql-persistent-storage
-          persistentVolumeClaim:
-            claimName: mysql-volumeclaim
+          #          persistentVolumeClaim:
+          #  claimName: mysql-volumeclaim
+          gcePersistentDisk:
+          # //先ほど作成した永続ディスクを指定
+            pdName: mysql-disk
+            fsType: ext4
