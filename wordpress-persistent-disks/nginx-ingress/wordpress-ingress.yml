@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: wordpress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    kubernetes.io/tls-acme: "true"
+spec:
+  tls:
+  - secretName: kubernetes-ingress-tls
+    hosts:
+      - ichigodaifuku.tamu222i.com
+  rules:
+  - host: ichigodaifuku.tamu222i.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: wordpress
+          servicePort: 80
+      - path: /*
+        backend:
+          serviceName: wordpress
+          servicePort: 80
